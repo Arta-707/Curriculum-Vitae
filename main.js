@@ -5,7 +5,9 @@ const pageName = document.body.dataset.page;
 
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  if (themeButton) themeButton.textContent = theme === "light" ? "Dark" : "Light";
+  if (themeButton) {
+    themeButton.textContent = theme === "light" ? "Dark" : "Light";
+  }
 }
 
 try {
@@ -19,7 +21,11 @@ if (themeButton) {
   themeButton.addEventListener("click", () => {
     const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
-    try { localStorage.setItem("arta-theme", nextTheme); } catch (error) {}
+    try {
+      localStorage.setItem("arta-theme", nextTheme);
+    } catch (error) {
+      // Ignore localStorage errors.
+    }
   });
 }
 
@@ -32,7 +38,9 @@ if (menuButton && navPanel) {
 }
 
 document.querySelectorAll("[data-nav]").forEach((link) => {
-  if (link.dataset.nav === pageName) link.setAttribute("aria-current", "page");
+  if (link.dataset.nav === pageName) {
+    link.setAttribute("aria-current", "page");
+  }
 });
 
 document.querySelectorAll("[data-year]").forEach((year) => {
@@ -51,15 +59,18 @@ if (!reducedMotion && "IntersectionObserver" in window) {
       }
     });
   }, { threshold: 0.15 });
+
   revealItems.forEach((item) => observer.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
 const printButton = document.querySelector("[data-print-button]");
-if (printButton) printButton.addEventListener("click", () => window.print());
+if (printButton) {
+  printButton.addEventListener("click", () => window.print());
+}
 
-// Live Rome time, inspired by simple personal-site timezone details.
+// Live Rome time.
 const romeTime = document.querySelector("[data-rome-time]");
 const romeTz = document.querySelector("[data-rome-tz]");
 const romeFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -72,40 +83,16 @@ const romeFormatter = new Intl.DateTimeFormat("en-GB", {
 
 function updateRomeTime() {
   if (!romeTime || !romeTz) return;
+
   const parts = romeFormatter.formatToParts(new Date());
-  romeTime.textContent = parts.filter((part) => part.type !== "timeZoneName").map((part) => part.value).join("");
+  romeTime.textContent = parts
+    .filter((part) => part.type !== "timeZoneName")
+    .map((part) => part.value)
+    .join("");
+
   const tzPart = parts.find((part) => part.type === "timeZoneName");
   romeTz.textContent = tzPart ? tzPart.value : "Rome";
 }
 
 updateRomeTime();
 setInterval(updateRomeTime, 1000);
-
-
-// Tiny white cat companion. Disable by removing the .cat-companion divs or setting display:none in CSS.
-// Later, replace the CSS shape with cat.png by styling .cat-companion with background-image.
-const cat = document.querySelector(".cat-companion");
-const canUseCat = cat && !reducedMotion && window.matchMedia("(pointer: fine)").matches;
-let catX = -50;
-let catY = -50;
-let targetX = -50;
-let targetY = -50;
-
-if (canUseCat) {
-  window.addEventListener("mousemove", (event) => {
-    targetX = event.clientX + 18;
-    targetY = event.clientY + 18;
-    cat.classList.add("is-visible");
-  });
-
-  function moveCat() {
-    catX += (targetX - catX) * 0.12;
-    catY += (targetY - catY) * 0.12;
-    cat.style.transform = "translate(" + catX + "px, " + catY + "px)";
-    requestAnimationFrame(moveCat);
-  }
-
-  moveCat();
-}
-
-console.info("DONT DIE // ARTA-707");
