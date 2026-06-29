@@ -96,3 +96,35 @@ function updateRomeTime() {
 
 updateRomeTime();
 setInterval(updateRomeTime, 1000);
+
+// My tiny desktop cat companion.
+// It follows the mouse softly and stays disabled on mobile/reduced motion.
+const cat = document.querySelector(".cat-companion");
+
+const canUseCat =
+  cat &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (canUseCat) {
+  let mouseX = -100;
+  let mouseY = -100;
+  let catX = -100;
+  let catY = -100;
+
+  window.addEventListener("mousemove", (event) => {
+    mouseX = event.clientX + 16;
+    mouseY = event.clientY + 18;
+    cat.classList.add("is-visible");
+  });
+
+  function moveCat() {
+    catX += (mouseX - catX) * 0.12;
+    catY += (mouseY - catY) * 0.12;
+
+    cat.style.transform = `translate(${catX}px, ${catY}px)`;
+    requestAnimationFrame(moveCat);
+  }
+
+  moveCat();
+}
