@@ -1,0 +1,18 @@
+/* Print mode: formal, white, quiet, and optimized for the CV. */
+@page { margin: 13mm; }
+* { box-shadow: none !important; text-shadow: none !important; }
+html, body { background: #ffffff !important; color: #111111 !important; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 1.35; }
+a { color: #111111 !important; text-decoration: none; }
+.site-header, .site-footer, .no-print, .cat-companion, .hero, .page-hero, .contact-band, .button, .theme-toggle, .menu-toggle, .skip-link, .personal-fuel { display: none !important; }
+.section-shell, .section-muted { padding: 0 !important; border: 0 !important; background: #ffffff !important; }
+.container, .cv-document { width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important; border: 0 !important; background: #ffffff !important; color: #111111 !important; }
+.cv-document { display: block !important; }
+.cv-header { display: flex; justify-content: space-between; gap: 14pt; padding-bottom: 8pt; border-bottom: 1.5pt solid #111111 !important; }
+.cv-header h1 { font-size: 21pt; }
+.cv-header address { font-style: normal; text-align: right; }
+.cv-section { padding: 7pt 0; border-bottom: 0.75pt solid #cccccc !important; break-inside: avoid; }
+.cv-section h2 { margin: 0 0 4pt; color: #111111 !important; font-size: 12pt; }
+.cv-section p, .cv-section li { color: #111111 !important; }
+.cv-section ul { margin: 0; padding-left: 13pt; }
+.cv-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; }
+.reveal { opacity: 1 !important; transform: none !important; }
