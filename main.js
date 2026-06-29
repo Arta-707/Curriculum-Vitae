@@ -1,4 +1,3 @@
-/* ARTA website JavaScript. Beginner-friendly, vanilla JS only. */
 const themeButton = document.querySelector("[data-theme-toggle]");
 const menuButton = document.querySelector("[data-menu-toggle]");
 const navPanel = document.querySelector("[data-nav-panel]");
@@ -13,7 +12,6 @@ try {
   const savedTheme = localStorage.getItem("arta-theme");
   if (savedTheme) setTheme(savedTheme);
 } catch (error) {
-  // The site still works if localStorage is unavailable.
 }
 
 if (themeButton) {
@@ -60,8 +58,7 @@ if (!reducedMotion && "IntersectionObserver" in window) {
 const printButton = document.querySelector("[data-print-button]");
 if (printButton) printButton.addEventListener("click", () => window.print());
 
-// Tiny white cat companion. Disable by removing the .cat-companion divs or setting display:none in CSS.
-// Later, replace the CSS shape with cat.png by styling .cat-companion with background-image.
+// my Tiny white cat companion. Disable by removing the .cat-companion divs or setting display:none in CSS.
 const cat = document.querySelector(".cat-companion");
 const canUseCat = cat && !reducedMotion && window.matchMedia("(pointer: fine)").matches;
 let catX = -50;
