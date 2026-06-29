@@ -1,6 +1,6 @@
 # ARTA Personal CV Website
 
-da link: 707.center
+da link: www.707.center
 
 just my personal website: a place for CV, notes, and the things I am building around medicine. 
 and hopefully book review logs in the future.
