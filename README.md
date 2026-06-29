@@ -19,4 +19,4 @@ It's a static GitHub Pages-ready website. It uses root-level files only, so it i
 
 Source code is licensed under AGPL-3.0 license.
 
-Personal content, CV information, images, biography, branding, book reviews, and written material are Copyright (c) Arta Hashemi / ARTA. All rights reserved.
+Personal content, CV information, images, biography, branding, book reviews, and written material are Copyright © Arta Hashemi / ARTA. All rights reserved.
