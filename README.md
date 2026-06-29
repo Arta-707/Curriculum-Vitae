@@ -1,5 +1,6 @@
 # ARTA Personal CV Website
 
+https://arta-707.github.io/Curriculum-Vitae/
 My personal website: a place for CV, research direction, projects, notes, and the things I am building around medicine, neuroscience, and technology.
 
 ## Project Overview
