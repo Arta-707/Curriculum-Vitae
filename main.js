@@ -12,6 +12,7 @@ try {
   const savedTheme = localStorage.getItem("arta-theme");
   if (savedTheme) setTheme(savedTheme);
 } catch (error) {
+  // The site still works if localStorage is unavailable.
 }
 
 if (themeButton) {
@@ -58,7 +59,31 @@ if (!reducedMotion && "IntersectionObserver" in window) {
 const printButton = document.querySelector("[data-print-button]");
 if (printButton) printButton.addEventListener("click", () => window.print());
 
-// my Tiny white cat companion. Disable by removing the .cat-companion divs or setting display:none in CSS.
+// Live Rome time, inspired by simple personal-site timezone details.
+const romeTime = document.querySelector("[data-rome-time]");
+const romeTz = document.querySelector("[data-rome-tz]");
+const romeFormatter = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Rome",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  timeZoneName: "short"
+});
+
+function updateRomeTime() {
+  if (!romeTime || !romeTz) return;
+  const parts = romeFormatter.formatToParts(new Date());
+  romeTime.textContent = parts.filter((part) => part.type !== "timeZoneName").map((part) => part.value).join("");
+  const tzPart = parts.find((part) => part.type === "timeZoneName");
+  romeTz.textContent = tzPart ? tzPart.value : "Rome";
+}
+
+updateRomeTime();
+setInterval(updateRomeTime, 1000);
+
+
+// Tiny white cat companion. Disable by removing the .cat-companion divs or setting display:none in CSS.
+// Later, replace the CSS shape with cat.png by styling .cat-companion with background-image.
 const cat = document.querySelector(".cat-companion");
 const canUseCat = cat && !reducedMotion && window.matchMedia("(pointer: fine)").matches;
 let catX = -50;
